@@ -1,0 +1,127 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">TimeSheet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+        aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Marção<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Apontamentos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Relatório</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Procurar..." aria-label="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="mt-3">
+        <div class="row">
+            <div class="col align-self-start">
+                <div class="card border-dark">
+                    <div class="card-header text-white">
+                        <h5> <span class="badge badge-light">Thiago Pacheco</span></h5>
+                        <h5> <span class="badge badge-light">Terça-feira - 05/09/2017</span></h5>
+                    </div>
+                    <div class="card-body text-dark">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button">00:00</button>
+      </span>
+                                        <input type="text" kzMask="99:99" #inputEntrada (keydown)="handleKeyDown($event)" [(ngModel)]="entrada" name="entrada" #inputEntrada
+                                            class="form-control" placeholder="Entrada" aria-label="Entrada">
+                                        <span class="input-group-btn">
+        <button class="btn btn-success" (click)="SalvarMarcacao(inputEntrada.value)" type="button">Registrado!</button>
+      </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc;height:80px">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">00:00</button>
+          </span>
+                                        <input type="text" class="form-control" placeholder="Saída Refeição" aria-label="Saída Refeição">
+                                        <span class="input-group-btn">
+            <button class="btn btn-success" type="button">Registrado!</button>
+          </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">00:00</button>
+          </span>
+                                        <input type="text" class="form-control" placeholder="Retorno Refeição" aria-label="Retorno Refeição">
+                                        <span class="input-group-btn">
+            <button class="btn btn-success" type="button">Registrado!</button>
+          </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">00:00</button>
+              </span>
+                                        <input type="text" class="form-control" placeholder="Saída" aria-label="Saída">
+                                        <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">Registrar</button>
+              </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Descrição das Atividades Executadas</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Cód Atividade Cronograma ou Cód Chamado</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <div class="row">
+            <div class="col align-self-start">
+                <div class="card border-dark">
+                    <div class="card-header text-white">
+                        <div class="row">
+                            <div class=" col-lg-offset-5 col-md-6">
+                                <h5><span class="badge badge-light">Tempo transcorrido: 04:35</span></h5>
+                            </div>
+                            <div class=" col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc">
+                                <h5><span class="badge badge-light">Tempo restante: 04:35</span></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-lg-offset-5 col-md-6">
+                                <h5><span class="badge badge-danger">Hora saída mínima: 19:00</span></h5>
+                            </div>
+                            <div class=" col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc">
+                                <h5><span class="badge badge-light">Total de horas normais: 45:10</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
