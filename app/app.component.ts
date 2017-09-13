@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
 })
-export class AppComponent {
-    entrada: string;
-    private handleKeyDown(event: any) {
+export class AppComponent implements OnInit {
+    horaEntrada: string = '00:00';
+    msgErroMarcacao: boolean = true;
+    campoMarcao: string;
+    marcacaoEntradaRegistrado: boolean = false;
+    textoMarcacaoRegistrado: string = 'Registrado!'
+    element: ElementRef;
+    constructor(elementRef: ElementRef) {
+        this.element = elementRef;
+    }
+    ngOnInit() {
+    }
+
+    private handleKeyDown(event: any, inputAll: ElementRef) {
         if (event.keyCode == 13) {
-            console.log('Enter');
+            this.salvarMarcacao(inputAll);
         }
         else if (event.keyCode == 40) {
             // action
@@ -17,25 +28,52 @@ export class AppComponent {
             // action
         }
     }
-    private SalvarMarcacao(marcacao: string): void {
-        this.Verifica_Hora(marcacao);
+
+    private salvarMarcacao(inputAll: ElementRef): void {
+        console.log(inputAll);
+    }
+    mostrarMsgErroMarcacao(idMarcacao: string) {
+        switch (idMarcacao) {
+            case 'entrada':
+                this.msgErroMarcacao = false;
+                this.campoMarcao = 'Entrada';
+                break;
+
+            default:
+                break;
+        }
+    }
+    atualizarMarcacao(idMarcacao: string, marcacao: string) {
+        switch (idMarcacao) {
+            case 'entrada':
+                this.marcacaoEntrada(marcacao);
+                break;
+            default:
+                break;
+        }
     }
 
-    Verifica_Hora(campo: any) {
-        var patt = new RegExp('^([01]\d|2[0-3]):?([0-5]\d)$');
-        patt.test(campo);
-        let hrs: number = (campo.substring(0, 2));
-        let min: number = (campo.substring(3, 5));
-        let estado = "";
-        if ((hrs < 0o0) || (hrs > 23) || (min < 0o0) || (min > 59)) {
-            estado = "errada";
-        }
-        if (campo.value == "") {
-            estado = "errada";
-        }
-        if (estado == "errada") {
-            alert("Hora invalida!");
-            campo.focus();
+    verifica_Hora(campo: any): boolean {
+        var regex = new RegExp("^([0-1][0-9]|[2][0-3]):([0-5][0-9])$");
+        return regex.test(campo);
+    }
+
+    private marcacaoEntrada(marcacao: string) {
+        this.marcacaoEntradaRegistrado = true;
+        this.horaEntrada = marcacao;
+        this.msgErroMarcacao = true;
+    }
+
+    private validarMarcacao(marcacao: string, idMarcacao: string) {
+        if (marcacao !== "") {
+            let validarRegex: boolean = this.verifica_Hora(marcacao);
+            if (validarRegex) {
+                this.atualizarMarcacao(idMarcacao, marcacao);
+            } else {
+                this.mostrarMsgErroMarcacao(idMarcacao);
+            }
+        } else {
+            this.mostrarMsgErroMarcacao(idMarcacao);
         }
     }
 }

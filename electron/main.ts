@@ -8,7 +8,7 @@ const app = electron.app;
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow () {
-  mainWindow = new electron.BrowserWindow({ width: 800, height: 750 });
+  mainWindow = new electron.BrowserWindow({ width: 850, height: 750 });
 
   // We load this over http when running locally to take advantage of BrowserSync. Because the lite-server
   // usually takes a few seconds to start, we add the 3 second pause.
