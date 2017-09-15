@@ -33,7 +33,7 @@
                         <h5> <span class="badge badge-light">Terça-feira - 05/09/2017</span></h5>
                     </div>
                     <div class="alert alert-danger" [hidden]="msgErroMarcacao" role="alert">
-                        Horário de {{campoMarcao}} informado nao é válido.
+                        Horário de {{campoMarcacao}} informado nao é válido.
                     </div>
 
                     <div class="card-body text-dark">
@@ -42,24 +42,25 @@
                                 <div class="col-lg-offset-3 col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <button [ngClass]="(!marcacaoEntradaRegistrado) ? 'btn btn-secondary' : 'btn btn-success'" type="button"> {{marcacaoEntradaRegistrado ? textoMarcacaoRegistrado + ' - ' +  horaEntrada : horaEntrada}} </button>
+                                            <button [ngClass]="(!marcacaoEntradaRegistrado) ? 'btn btn-secondary' : 'btn btn-success'" #btnEntradaVisualizar  type="button"> {{marcacaoEntradaRegistrado ? textoMarcacaoRegistrado + ' - ' +  horaEntrada : horaEntrada}} </button>
                                         </span>
-                                        <input type="text" kzMask="99:99" (keydown)="handleKeyDown($event,inputEntrada)" #inputEntrada ngModel='entrada' name="entrada" class="form-control"
-                                            placeholder="Entrada" aria-label="Entrada">
+                                        <input type="text" kzMask="99:99" (keydown)="handleKeyDown($event,inputEntrada.name)" #inputEntrada ngModel="entrada" name="entrada"
+                                            class="form-control" placeholder="Entrada" aria-label="Entrada">
                                         <span class="input-group-btn">
-                                        <button [ngClass]="(!marcacaoEntradaRegistrado) ? 'btn btn-primary' : 'btn btn-danger'" (click)="salvarMarcacao(inputEntrada)" type="button">{{ marcacaoEntradaRegistrado ? 'Editar' : 'Registrar' }}</button>
+                                        <button [ngClass]="(!marcacaoEntradaRegistrado) ? 'btn btn-primary' : 'btn btn-danger'" (click)="_registrarMarcacao(inputEntrada.name)" #btnEntradaRegistrar type="button">{{ marcacaoEntradaRegistrado ? 'Editar' : 'Registrar' }}</button>
                                     </span>
                                     </div>
                                 </div>
                                 <div class="col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc;height:80px">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">00:00</button>
-          </span>
-                                        <input type="text" class="form-control" placeholder="Saída Refeição" aria-label="Saída Refeição">
+                                            <button [ngClass]="(!marcacaoSaidaRefeicaoRegistrado) ? 'btn btn-secondary' : 'btn btn-success'" #btnSaidaRefeicaoVisualizar  type="button"> {{marcacaoSaidaRefeicaoRegistrado ? textoMarcacaoRegistrado + ' - ' +  horaSaidaRefeicao : horaSaidaRefeicao}} </button>
+                                         </span>
+                                        <input type="text" kzMask="99:99" (keydown)="handleKeyDown($event,inputSaidaRefeicao.name)" #inputSaidaRefeicao ngModel="saidaRefeicao"
+                                            name="saidaRefeicao" class="form-control" placeholder="Saída Refeição" aria-label="Saída Refeição">
                                         <span class="input-group-btn">
-            <button class="btn btn-success" type="button">Registrado!</button>
-          </span>
+                                            <button [ngClass]="(!marcacaoSaidaRefeicaoRegistrado) ? 'btn btn-primary' : 'btn btn-danger'" (click)="_registrarMarcacao(inputSaidaRefeicao.name)" #btnSaidaRefeicaoRegistrar type="button">{{ marcacaoSaidaRefeicaoRegistrado ? 'Editar' : 'Registrar' }}</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -67,23 +68,25 @@
                                 <div class="col-lg-offset-3 col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">00:00</button>
-          </span>
-                                        <input type="text" class="form-control" placeholder="Retorno Refeição" aria-label="Refeição">
+                                            <button [ngClass]="(!marcacaoRetornoRefeicaoRegistrado) ? 'btn btn-secondary' : 'btn btn-success'" #btnRetornoRefeicaoVisualizar  type="button"> {{marcacaoRetornoRefeicaoRegistrado ? textoMarcacaoRegistrado + ' - ' +  horaRetornoRefeicao : horaRetornoRefeicao}} </button>
+                                        </span>
+                                        <input type="text" kzMask="99:99" (keydown)="handleKeyDown($event,inputRetornoRefeicao.name)" #inputRetornoRefeicao ngModel="retornoRefeicao"
+                                            name="retornoRefeicao" class="form-control" placeholder="Retorno Refeição" aria-label="Retorno Refeição">
                                         <span class="input-group-btn">
-            <button class="btn btn-success" type="button">Registrado!</button>
-          </span>
+                                            <button [ngClass]="(!marcacaoRetornoRefeicaoRegistrado) ? 'btn btn-primary' : 'btn btn-danger'" (click)="_registrarMarcacao(inputRetornoRefeicao.name)" #btnRetonoRefeicaoRegistrar type="button">{{ marcacaoRetornoRefeicaoRegistrado ? 'Editar' : 'Registrar' }}</button>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-lg-offset-5 col-md-6" style="border-left:1px solid #ccc">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">00:00</button>
-              </span>
-                                        <input type="text" class="form-control" placeholder="Saída" aria-label="Saída">
+                                            <button [ngClass]="(!marcacaoSaidaRegistrado) ? 'btn btn-secondary' : 'btn btn-success'" #btnSaidaVisualizar  type="button"> {{marcacaoSaidaRegistrado ? textoMarcacaoRegistrado + ' - ' +  horaSaida : horaSaida}} </button>
+                                        </span>
+                                        <input type="text" kzMask="99:99" (keydown)="handleKeyDown($event,inputSaida.name)" #inputSaida ngModel="saida"
+                                            name="saida" class="form-control" placeholder="Saída" aria-label="Saída">
                                         <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">Registrar</button>
-              </span>
+                                            <button [ngClass]="(!marcacaoSaidaRegistrado) ? 'btn btn-primary' : 'btn btn-danger'" (click)="_registrarMarcacao(inputSaida.name)" #btnSaidaRegistrar type="button">{{ marcacaoSaidaRegistrado ? 'Editar' : 'Registrar' }}</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
